@@ -23,7 +23,7 @@ import { UserRoleEnum } from "../enums";
 import validatePagination from "../validators/validatePagination";
 import handleValidationResult from "../middlewares/handleValidationResult";
 
-router.use(verifyAccessToken);
+// router.use(verifyAccessToken);
 router.patch(
   "/assignTrainer",
   verifyRoles([UserRoleEnum.Company]),

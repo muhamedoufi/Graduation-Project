@@ -13,5 +13,7 @@ app.use(express.json());
 app.use(morgan('dev')); // Create new morgan logger middleware function
 app.use('/api/v1', router);
 app.use(errorHandler);
+app.get('/test', (req, res) => res.send('Server is working'));
+
 
 export default app;

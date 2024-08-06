@@ -135,5 +135,6 @@
     "esm": true,
     "experimentalSpecifierResolution": "node"
   },
-  "include": ["../.eslintrc.json", "src"]
+  "include": ["../.eslintrc.json", "src"],
+  
 }

@@ -1,6 +1,5 @@
 {
-  "ignore": ["**/*.test.ts", "**/*.spec.ts", ".git", "node_modules"],
   "watch": ["src"],
-  "exec": "ts-node-esm --transpileOnly -r tsconfig-paths/register src/server.ts",
-  "ext": "ts, js"
+  "ext": "ts",
+  "exec": "node --loader ts-node/esm/transpile-only  src/server.ts"
 }

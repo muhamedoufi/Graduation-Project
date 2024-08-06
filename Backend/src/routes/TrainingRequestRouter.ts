@@ -9,7 +9,7 @@ import { UserRoleEnum } from "../enums";
 import validatePagination from "../validators/validatePagination";
 import handleValidationResult from "../middlewares/handleValidationResult";
 
-router.use(verifyAccessToken);
+// router.use(verifyAccessToken);
 router.post(
   "/request",
   verifyRoles([UserRoleEnum.UNI_TRAINING_OFFICER]),

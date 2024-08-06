@@ -93,6 +93,64 @@ class AuthController {
             next(err);
         }
     }
+
+
+    handleRegister = async (req: Request, res: Response<BaseResponse>, next: NextFunction) => {
+        try {
+            const { username, password, name, roleId } = req.body;
+
+            // Validate input
+            if (!username || !password || !name || !roleId) {
+                return res.status(400).json({
+                    success: false,
+                    status: res.statusCode,
+                    message: "All fields are required"
+                });
+            }
+
+            // Check if user already exists
+            const existingUser = await User.findOne({ where: { username } });
+            if (existingUser) {
+                return res.status(409).json({
+                    success: false,
+                    status: res.statusCode,
+                    message: "Username is already taken"
+                });
+            }
+
+            // Hash the password
+            const hashedPassword = await bcrypt.hash(password, 10);
+
+            // Create the new user
+            const newUser = await User.create({
+                username,
+                password: hashedPassword,
+                name,
+                roleId
+            });
+
+            // Optionally, generate an access token for the newly registered user
+            const accessTokenSecret = <Secret>process.env.ACCESS_TOKEN_SECRET;
+            const payload = {
+                userId: newUser.id,
+                username: newUser.username,
+                roleId: newUser.roleId,
+                name: newUser.name,
+                permissions: [], // supported but not used yet in this project
+            }
+            const accessToken = jwt.sign(payload, accessTokenSecret, { expiresIn: '7d' });
+
+            res.status(201).json({
+                success: true,
+                status: res.statusCode,
+                message: 'Successfully registered and logged in',
+                data: payload,
+                accessToken
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
 }
 
 export default new AuthController()

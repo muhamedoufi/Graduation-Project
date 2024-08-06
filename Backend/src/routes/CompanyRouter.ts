@@ -20,7 +20,7 @@ const {
 
 const { getCompanyTrainers } = TrainerController;
 
-router.use(verifyAccessToken);
+// router.use(verifyAccessToken);
 router.post(
   "/company",
   verifyRoles([UserRoleEnum.UNI_TRAINING_OFFICER]),

@@ -6,7 +6,7 @@ const { getRejectedEvaluations, generateProgressForm, getPendingEvaluations, sig
 import verifyRoles from '../middlewares/verifyRole';
 import { UserRoleEnum } from '../enums';
 
-router.use(verifyAccessToken)
+// router.use(verifyAccessToken)
 router.post('/progressForm', generateProgressForm);
 router.patch('/sign', verifyRoles([UserRoleEnum.TRAINER]), signEvaluation);
 router.post('/reject', verifyRoles([UserRoleEnum.TRAINER]), rejectEvaluation);

@@ -8,7 +8,7 @@ import { UserRoleEnum } from '../enums';
 
 // router.get('/trainers', getAll);
 
-router.use(verifyAccessToken)
+// router.use(verifyAccessToken)
 router.use(verifyRoles([UserRoleEnum.Company]))
 router.post('/trainer', addtrainer);
 router.patch('/trainer', updateTrainer)

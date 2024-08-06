@@ -55,11 +55,11 @@
     ]
   },
   "scripts": {
-    "dev": "nodemon",
-    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register --esm build/app.js",
-    "build": "tsc",
-    "prepare": "cd .. && husky install Backend/.husky"
-  },
+  "dev": "nodemon",
+  "start": "node --loader ts-node/esm/transpile-only --experimental-specifier-resolution=node src/server.ts",
+  "build": "tsc",
+  "prepare": "cd .. && husky install Backend/.husky"
+},
   "author": "",
   "description": "Student's University Practical Training Management Information System"
 }

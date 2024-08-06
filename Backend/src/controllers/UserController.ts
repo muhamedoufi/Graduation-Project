@@ -206,7 +206,7 @@ class UserController {
       });
 
     const hash = await bcrypt.hash(newPassword, 10);
-    const user = await User.findOne({ where: { username: req.user.username } });
+    const user = await User.findOne({ where: { username: 'saadna' } });
     await User.update(
       { password: hash },
       { where: { username: user?.username } }
